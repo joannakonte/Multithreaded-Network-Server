@@ -6,7 +6,7 @@ CFLAGS = -pthread -Werror -Wall
 
 # Arguments
 POLLER_ARG = 5635 8 16 poll-log poll-stats
-SWAYER_ARG = linux06.di.uoa.gr 5635 inputFile
+SWAYER_ARG = linux06.di.uoa.gr 5635 input/inputFile
 
 # Executables
 EXEC_POLLER = poller
