@@ -1,5 +1,3 @@
-Ioanna Kontemeniotou - A.M 1115202000227
-
 // ---------------------- | Problem 1 | ---------------------- //
 
 The server program creates a TCP socket and listens for incoming connections on a specified port. When a new connection is established, the `addToBuffer` function is 
