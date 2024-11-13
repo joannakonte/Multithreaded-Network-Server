@@ -1,4 +1,4 @@
-// ---------------------- | Problem 1 | ---------------------- //
+# Multithreaded-Network-Server
 
 The server program creates a TCP socket and listens for incoming connections on a specified port. When a new connection is established, the `addToBuffer` function is 
 called to add the connection to the buffer. This buffer acts as a communication channel between the master thread and the worker threads, allowing concurrent handling of connections.
@@ -63,14 +63,15 @@ Usage:
 - `./processLogFile.sh output_file`
         - `output_file` is the name of the file where the processed log results will be written.
 
-// ====================== | Makefile | ====================== //
+## Usage
 
-To use the provided Makefile, follow these commands:
+Use the Makefile to compile, run and clean using the following commands:
 
-- make: Compile the 'poller' and 'pollSwayer' executables.
-- make run_poller: Execute the 'poller' program with predefined arguments.
-- make run_swayer: Execute the 'pollSwayer' program with predefined arguments.
-- make clean: Remove object files, executables, and additional files from the directory.
-
+```bash
+$ make: Compile the 'poller' and 'pollSwayer' executables.
+$ make run_poller: Execute the 'poller' program with predefined arguments.
+$ make run_swayer: Execute the 'pollSwayer' program with predefined arguments.
+$ make clean: Remove object files, executables, and additional files from the directory.
+```
 ! Note: If you want to run the two programs manually, make sure that the first argument of 
         `pollSwayer` is the machine that the 'poller' server is running on.
