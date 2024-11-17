@@ -1,36 +1,14 @@
 # Multithreaded-Network-Server
 
-The server program creates a TCP socket and listens for incoming connections on a specified port. When a new connection is established, the `addToBuffer` function is 
-called to add the connection to the buffer. This buffer acts as a communication channel between the master thread and the worker threads, allowing concurrent handling of connections.
+### Server
 
-The `addToBuffer` function ensures exclusive access to the buffer by acquiring a mutex lock. It checks if there is space available in the buffer. If the buffer is full, 
-the thread waits until space becomes available. Once space is available, the connection is added to the buffer by updating the rear index and incrementing the count. 
-To notify the waiting worker threads that there is an available connection in the buffer, the 'empty' condition variable is signaled.
+This program implements a multithreaded TCP server for managing a simple voting system. It uses a fixed-capacity buffer as a queue to temporarily store client connections, following a first-in, first-out (FIFO) structure. The master thread adds connections to the rear, while worker threads retrieve them from the front. Synchronization is achieved using with mutexes for locking shared resources and condition variables for signaling when the buffer is full or empty. When a SIGINT signal is received, the server writes sorted voting statistics to a file and terminates safely.
 
-When a worker thread needs to retrieve a connection from the buffer to process, it calls the `removeFromBuffer` function. This function also acquires the mutex lock 
-to ensure exclusive access to the buffer. It checks if a connection is available in the buffer. If the buffer is empty, the thread waits until it is notified by the 
-master thread. Once a connection becomes available, it is retrieved from the front of the buffer by updating the front index and decrementing the count. The 'full' 
-condition variable is then signaled to notify the master thread that there is an available slot in the buffer.
+## Batch Client
 
-Worker threads handle connections by requesting and processing the voter's name and party's name. They check if the voter has already voted by examining the poll-log file. 
-If the voter has already voted, the worker thread notifies the client and closes the connection. Otherwise, the worker thread records the vote by requesting the party's name 
-from the client. It updates the party's vote count and appends the voter's information to the poll-log file.
+This multi-threaded client program reads votes from an input file and sends them to a server via independent threads. Each thread establishes a TCP connection, sends the voter's details, and receives confirmation. The ThreadData structure stores relevant information, and threads operate independently, ensuring efficient processing and proper memory deallocation. The program exits after handling all votes.
 
-To ensure thread safety while updating the party's vote count and accessing the poll-log file, a mutex is used. The mutex ensures that only one thread can access the shared 
-resources at a time, preventing data races and inconsistencies.
-
-When the program receives the SIGINT signal (Ctrl+C), the writeStats function is called. This function opens the poll-stats file, sorts the party votes based on the party's 
-name in alphabetical order, and writes the sorted party votes and the total votes to the file. Finally, the program exits, and the server shuts down.
-
-// ---------------------- | Problem 2 | ---------------------- //
-
-The multi-threaded client program provided establishes a connection to a server to send votes. It reads votes from the input file given as an argument. 
-For each vote, the program creates a new thread dedicated to sending the vote to the server and receiving confirmation messages. The necessary data for each thread is stored in a 
-structure called `ThreadData`, which includes the server name, port number, voter's name, surname, and the vote they cast. The threads establish independent TCP socket connections 
-with the server using address resolution with the help of `sendVote` function. These threads operate independently and detach from the main thread. Once all the votes have been processed, 
-the program gracefully exits, ensuring proper memory deallocation.
-
-// ---------------------- | Problem 3 | ---------------------- //
+### Bash Scripts
 
 /* ===== create_input.sh ===== */
 This bash script generates a file called inputFile.txt that includes names, surnames, and the party that each person voted for. It expects two arguments: 
