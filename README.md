@@ -46,10 +46,10 @@ Usage:
 Use the Makefile to compile, run and clean using the following commands:
 
 ```bash
-$ make: Compile the 'poller' and 'pollSwayer' executables.
-$ make run_poller: Execute the 'poller' program with predefined arguments.
-$ make run_swayer: Execute the 'pollSwayer' program with predefined arguments.
-$ make clean: Remove object files, executables, and additional files from the directory.
+$ make            # Compile the 'poller' and 'pollSwayer' executables.
+$ make run_poller # Execute the 'poller' program with predefined arguments.
+$ make run_swayer # Execute the 'pollSwayer' program with predefined arguments.
+$ make clean      # Remove object files, executables, and additional files from the directory.
 ```
 ! Note: If you want to run the two programs manually, make sure that the first argument of 
         `pollSwayer` is the machine that the 'poller' server is running on.
