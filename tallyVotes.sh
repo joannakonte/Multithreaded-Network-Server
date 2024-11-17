@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Check if the inputFile file exists and has appropriate permissions
-if [ ! -f "inputFile.txt" ] || [ ! -r "inputFile.txt" ]; then
+if [ ! -f "./input/inputFile" ] || [ ! -r "./input/inputFile" ]; then
     echo "Error: inputFile does not exist or does not have appropriate permissions."
     exit 1
 fi
 
 # Sort and remove duplicate lines from the inputFile
-sorted_input=$(sort "inputFile.txt" | uniq)
+sorted_input=$(sort "./input/inputFile" | uniq)
 
 declare -A voter_counts
 declare -A party_votes
