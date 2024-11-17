@@ -10,12 +10,10 @@ This multi-threaded client program reads votes from an input file and sends them
 
 ### Bash Scripts
 
-/* ===== create_input.sh ===== */
-This bash script generates a file called inputFile.txt that includes names, surnames, and the party that each person voted for. It expects two arguments: 
-a file containing the names of parties and the number of lines to generate. The script performs various checks, such as ensuring that the correct number of arguments is provided, 
-verifying the existence of the parties file, checking if numLines is a positive integer, and ensuring that the parties file is not empty. It then randomly selects parties from the 
-parties file and generates random strings as first names and last names. The length of each first name and last name ranges between 3 and 12 characters. Finally, the script 
-prints a message indicating that the file has been successfully created.
+/* ===== create_input.sh ===== */ <br>
+
+
+This bash script generates an inputFile.txt containing randomly generated first names, last names, and party affiliations. It takes two arguments: a file with party names and the number of lines to generate. The script validates the input, ensuring the correct number of arguments, the existence and readability of the parties file, a positive integer for the number of lines, and a non-empty parties file. The names generated are random strings between 3 and 12 characters, and parties are randomly selected from the file. A confirmation message is displayed when the file is created successfully.
 
 /* ====== tallyVotes.sh ====== */
 This bash script checks if an input file exists and has appropriate permissions. It proceeds to sort the file, remove duplicate lines, and count the votes for each party.
