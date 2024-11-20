@@ -44,7 +44,7 @@ The `pollSwayer` client program requires the following arguments:
 - **portNum:** Port number the server is listening on (must match the poller server’s port).
 - **input_file:** File containing voter information to send to the server.
 
-Please note that this project has been tested and validated on Linux systems.
+⚠️ Please note that this project has been tested and validated on Linux systems.
 _________________
 
 ## Bash Scripts
