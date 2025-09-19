@@ -2,7 +2,7 @@
 
 ### Server
 
-This program implements a multithreaded TCP server for managing a simple voting system. It uses a fixed-capacity buffer as a queue to temporarily store client connections, following a first-in, first-out (FIFO) structure. The master thread adds connections to the rear, while worker threads retrieve them from the front. Synchronization is achieved using with mutexes for locking shared resources and condition variables for signaling when the buffer is full or empty. When a SIGINT signal is received, the server writes sorted voting statistics to a file and terminates safely.
+This program implements a multithreaded TCP server for managing a simple voting system. It uses a fixed-size buffer as a queue to temporarily store client connections, following a first-in, first-out (FIFO) structure. The master thread adds connections to the rear, while worker threads retrieve them from the front. Synchronization is achieved using with mutexes for locking shared resources and condition variables for signaling when the buffer is full or empty. When a SIGINT signal is received, the server writes sorted voting statistics to a file and terminates safely.
 
 ### Batch Client
 
